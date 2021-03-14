@@ -3,11 +3,9 @@ use std::cmp::Ordering;
 use std::io;
 
 fn main() {
-    println!("Guess the number!");
+    println!("Guess the number (from 1 to 25)!");
 
-    let secret_number = thread_rng().gen_range(1..100);
-
-    println!("The secret number is: {}", secret_number);
+    let secret_number = thread_rng().gen_range(1..25);
 
     loop {
         println!("Please input your guess.");
@@ -21,7 +19,7 @@ fn main() {
         let guess: u32 = match guess.trim().parse() {
             Ok(num) => num,
             Err(_) => continue,
-        }
+        };
 
         println!("You guessed: {}", guess);
 
@@ -29,7 +27,7 @@ fn main() {
             Ordering::Less => println!("Too small!"),
             Ordering::Greater => println!("Too big!"),
             Ordering::Equal => {
-                println!("You win!");
+                println!("You win! The secret number is {}", secret_number);
                 break;
             }
         }
